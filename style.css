@@ -130,11 +130,22 @@ section p {
   font-size: 14px;
 }
 
-/* LIVE SCHEDULE */
+/* LIVE SCHEDULE（カルーセル版） */
 .schedule-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   gap: 20px;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+/* スクロールバー非表示 */
+.schedule-list::-webkit-scrollbar {
+  display: none;
 }
 
 .schedule-card {
@@ -143,6 +154,12 @@ section p {
   background-color: #1a1a1a;
   padding: 28px;
   border-radius: 16px;
+
+  min-width: 85%;
+  max-width: 400px;
+
+  flex: 0 0 auto;
+  scroll-snap-align: center;
 }
 
 .schedule-card .date {
@@ -168,6 +185,7 @@ section p {
   letter-spacing: 1px;
 }
 
+/* SOLD OUTスタンプ */
 .schedule-card.soldout::after {
   content: "SOLD OUT";
   position: absolute;
@@ -188,8 +206,15 @@ section p {
   text-shadow: 0 0 10px rgba(230, 57, 70, 1);
 }
 
+/* 過去ライブ */
 .schedule-card.past {
   opacity: 0.75;
+}
+
+/* PCでちょい浮かせる（任意） */
+.schedule-card:hover {
+  transform: scale(1.03);
+  transition: 0.3s;
 }
 
 /* GOODS */
